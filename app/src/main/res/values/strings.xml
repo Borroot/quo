@@ -1,6 +1,13 @@
 <resources>
+<!--    This is content shown in the app.-->
     <string name="app_name">quo</string>
     <string name="action_settings">Settings</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
+
+<!--    These are just place-holders. -->
+    <string name="app_widget_text">S</string>
+    <string name="app_widget_date">00:00 00-00</string>
+
+<!--    This is everything which is saved in the shared prefs.-->
+    <string name="shared_prefs">my_prefs</string>
+    <string name="saved_symbol_index">symbol_index</string>
 </resources>

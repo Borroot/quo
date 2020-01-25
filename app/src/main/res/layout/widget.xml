@@ -1,21 +1,26 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
-    android:padding="@dimen/widget_margin">
+    android:padding="@dimen/widget_margin"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <TextView
-        android:id="@+id/appwidget_text"
+        android:id="@+id/app_widget_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
+        android:text="@string/app_widget_text"
+        android:textColor="#dddddd"
+        android:textSize="72sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/app_widget_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_widget_date"
+        android:textColor="#dddddd"
+        android:textSize="14sp"
         android:textStyle="bold|italic" />
 
-</RelativeLayout>
+</LinearLayout>
