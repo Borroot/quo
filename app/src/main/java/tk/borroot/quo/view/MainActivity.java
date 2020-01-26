@@ -1,4 +1,4 @@
-package tk.borroot.quo;
+package tk.borroot.quo.view;
 
 import android.os.Bundle;
 
@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import tk.borroot.quo.controller.Controller;
+import tk.borroot.quo.R;
 
 /**
  * The main activity, here the symbols with their notes

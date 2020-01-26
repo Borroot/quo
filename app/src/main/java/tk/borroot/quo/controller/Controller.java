@@ -1,4 +1,4 @@
-package tk.borroot.quo;
+package tk.borroot.quo.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import tk.borroot.quo.R;
 
 public class Controller {
 

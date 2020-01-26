@@ -1,4 +1,4 @@
-package tk.borroot.quo;
+package tk.borroot.quo.view;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -6,6 +6,9 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+
+import tk.borroot.quo.controller.Controller;
+import tk.borroot.quo.R;
 
 /**
  * Implementation of the Widget functionality.
