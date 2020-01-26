@@ -31,10 +31,10 @@ public class Widget extends AppWidgetProvider {
      * @param context the current context
      * @return the next symbol from the SYMBOLS array
      */
-    private String updateSymbol(Context context) {
-        // Create the shared pref object. // TODO: give all widgets their own shared pref
+    private String updateSymbol(Context context, int widgetId) {
+        // Create the shared pref object.
         SharedPreferences sharedPref = context.getSharedPreferences(
-                String.valueOf(R.string.shared_prefs), Context.MODE_PRIVATE);
+                String.valueOf(R.string.shared_prefs) + widgetId, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         // Get the current index for the symbol from the shared pref.
@@ -68,7 +68,7 @@ public class Widget extends AppWidgetProvider {
      */
     private void updateWidget(Context context, AppWidgetManager widgetManager, int widgetId) {
         // Update the symbol and time variable.
-        String symbol = updateSymbol(context);
+        String symbol = updateSymbol(context, widgetId);
         String date = updateDate();
 
         // Set the variables in the remote view.
