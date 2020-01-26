@@ -2,6 +2,7 @@
 <!--    This is content shown in the app.-->
     <string name="app_name">Quo</string>
 
+    <string name="dialog_add_title">Add a new Symbol!</string>
     <string name="dialog_add_hint_symbol">symbol</string>
     <string name="dialog_add_hint_note">description/note</string>
 

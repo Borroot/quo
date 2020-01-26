@@ -8,13 +8,11 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
- * Implementation of App Widget functionality.
+ * Implementation of the Widget functionality.
  *
  * @author Bram Pulles
  */
 public class Widget extends AppWidgetProvider {
-
-    private static final String TAG = Widget.class.getSimpleName();
 
     private static final Controller controller = Controller.init();
     private static final String ACTION_WIDGET = "tk.borroot.quo.action.APPWIDGET_CLICK";
