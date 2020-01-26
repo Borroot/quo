@@ -17,7 +17,8 @@ import tk.borroot.quo.R;
  */
 public class Widget extends AppWidgetProvider {
 
-    private static final Controller controller = Controller.init();
+    private static final String TAG = Controller.class.getSimpleName();
+
     private static final String ACTION_WIDGET = "tk.borroot.quo.action.APPWIDGET_CLICK";
 
     /**
@@ -27,10 +28,12 @@ public class Widget extends AppWidgetProvider {
      * @param widgetManager the widget manager
      * @param widgetId the current widget
      */
-    private void updateWidget(Context context, AppWidgetManager widgetManager, int widgetId) {
+    private void updateWidget(Context context, AppWidgetManager widgetManager, final int widgetId) {
+        final Controller controller = Controller.getController(context);
+
         // Update the symbol and time variable.
-        String symbol = "" + controller.nextSymbol(context, widgetId);
-        String date = controller.currentDate();
+        final String symbol = "" + controller.nextSymbol(context, widgetId);
+        final String date = controller.currentDate();
 
         // Set the variables in the remote view.
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
@@ -63,7 +66,7 @@ public class Widget extends AppWidgetProvider {
      */
     private void onClick(Context context, String action) {
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-        int widgetId = Integer.parseInt(action.substring(ACTION_WIDGET.length()));
+        final int widgetId = Integer.parseInt(action.substring(ACTION_WIDGET.length()));
         updateWidget(context, widgetManager, widgetId);
     }
 

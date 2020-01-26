@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import tk.borroot.quo.controller.Controller;
 import tk.borroot.quo.R;
+import tk.borroot.quo.database.Symbol;
 
 /**
  * The main activity, here the symbols with their notes
@@ -22,7 +23,7 @@ import tk.borroot.quo.R;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static Controller controller = Controller.init();
+    private Controller controller;
 
     /**
      * Add a new symbol. The symbol and the optional note are
@@ -41,9 +42,13 @@ public class MainActivity extends AppCompatActivity {
             EditText view_symbol = view.findViewById(R.id.dialog_add_symbol);
             EditText view_note = view.findViewById(R.id.dialog_add_note);
 
-            char symbol = view_symbol.getText().charAt(0);
+            String text = String.valueOf(view_symbol.getText());
+            if (text.equals("")) return;
+            char ch = text.charAt(0);
             String note = String.valueOf(view_note.getText());
-            controller.addSymbol(symbol, note);
+            Symbol symbol = new Symbol(ch, note);
+
+            controller.addSymbol(symbol);
         });
         alert.show();
     }
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        controller = Controller.getController(this);
 
         // Set the layout of the view.
         setContentView(R.layout.activity_main);
@@ -59,5 +65,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the onclick listener for the plus button.
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((View v) -> onAdd());
+
+        // TODO draw the entries
     }
 }
