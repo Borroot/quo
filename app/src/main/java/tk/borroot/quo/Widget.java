@@ -8,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.text.SimpleDateFormat;
@@ -16,6 +15,8 @@ import java.util.Date;
 
 /**
  * Implementation of App Widget functionality.
+ *
+ * @author Bram Pulles
  */
 public class Widget extends AppWidgetProvider {
 
@@ -24,6 +25,13 @@ public class Widget extends AppWidgetProvider {
     private static final String ACTION_WIDGET = "tk.borroot.quo.action.APPWIDGET_CLICK";
     private static final String[] SYMBOLS = {"L", "R"};
 
+    /**
+     * Look up the current index of the symbol shown by the widget,
+     * increase this value (or set to 0) and return the new symbol.
+     *
+     * @param context the current context
+     * @return the next symbol from the SYMBOLS array
+     */
     private String updateSymbol(Context context) {
         // Create the shared pref object.
         SharedPreferences sharedPref = context.getSharedPreferences(
@@ -42,11 +50,23 @@ public class Widget extends AppWidgetProvider {
         return SYMBOLS[current % SYMBOLS.length];
     }
 
+    /**
+     * Show the current time.
+     *
+     * @return the time in HH:mm dd-MM format
+     */
     @SuppressLint("SimpleDateFormat")
     private String updateDate() {
         return new SimpleDateFormat("HH:mm dd-MM").format(new Date());
     }
 
+    /**
+     * Cycle to the next symbol on the widget and update the time.
+     *
+     * @param context the current context
+     * @param widgetManager the widget manager
+     * @param widgetId the current widget
+     */
     private void updateWidget(Context context, AppWidgetManager widgetManager, int widgetId) {
         // Update the symbol and time variable.
         String symbol = updateSymbol(context);
@@ -74,6 +94,12 @@ public class Widget extends AppWidgetProvider {
         }
     }
 
+    /**
+     * Deduce the AppWidgetManager and the widgetIds from the context
+     * and call onUpdate() with all three arguments.
+     *
+     * @param context the current context
+     */
     private void onUpdate(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         ComponentName component = new ComponentName(context.getPackageName(), getClass().getName());
@@ -84,7 +110,6 @@ public class Widget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_WIDGET)) {
-            Log.d(TAG, "The button has been clicked by the widget action.");
             onUpdate(context);
         }
         super.onReceive(context, intent);
