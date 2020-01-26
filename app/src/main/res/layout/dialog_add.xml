@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/dialog_margin"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/dialog_add_symbol"
+        android:inputType="textCapCharacters"
+        android:maxLength="1"
+        android:hint="@string/dialog_add_hint_symbol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/dialog_add_note"
+        android:inputType="textMultiLine"
+        android:maxLength="80"
+        android:hint="@string/dialog_add_hint_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
