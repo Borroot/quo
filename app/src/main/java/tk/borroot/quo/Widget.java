@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,7 +32,7 @@ public class Widget extends AppWidgetProvider {
      * @return the next symbol from the SYMBOLS array
      */
     private String updateSymbol(Context context) {
-        // Create the shared pref object.
+        // Create the shared pref object. // TODO: give all widgets their own shared pref
         SharedPreferences sharedPref = context.getSharedPreferences(
                 String.valueOf(R.string.shared_prefs), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -77,8 +76,8 @@ public class Widget extends AppWidgetProvider {
         views.setTextViewText(R.id.widget_symbol, symbol);
         views.setTextViewText(R.id.widget_date, date);
 
-        // Set the onclick event for the widget.
-        Intent intent = new Intent(context, getClass()).setAction(ACTION_WIDGET);
+        // Set the onclick event for the widget. The action is the action string plus the widgetId.
+        Intent intent = new Intent(context, getClass()).setAction(ACTION_WIDGET + widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
 
@@ -99,20 +98,25 @@ public class Widget extends AppWidgetProvider {
      * and call onUpdate() with all three arguments.
      *
      * @param context the current context
+     * @param action first the action string followed by the widgetId in string form
      */
-    private void onUpdate(Context context) {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        ComponentName component = new ComponentName(context.getPackageName(), getClass().getName());
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(component);
-        onUpdate(context, appWidgetManager, appWidgetIds);
+    private void onUpdate(Context context, String action) {
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+        int widgetId = Integer.parseInt(action.substring(ACTION_WIDGET.length()));
+        updateWidget(context, widgetManager, widgetId);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(ACTION_WIDGET)) {
-            onUpdate(context);
-        }
         super.onReceive(context, intent);
+
+        if (intent != null) {
+            String action = intent.getAction();
+
+            if (action != null && action.startsWith(ACTION_WIDGET)) {
+                onUpdate(context, action);
+            }
+        }
     }
 }
 
