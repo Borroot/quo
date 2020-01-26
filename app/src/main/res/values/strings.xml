@@ -4,8 +4,8 @@
     <string name="action_settings">Settings</string>
 
 <!--    These are just place-holders. -->
-    <string name="app_widget_text">S</string>
-    <string name="app_widget_date">00:00 00-00</string>
+    <string name="widget_text">\?</string>
+    <string name="widget_date">00:00 00-00</string>
 
 <!--    This is everything which is saved in the shared prefs.-->
     <string name="shared_prefs">my_prefs</string>

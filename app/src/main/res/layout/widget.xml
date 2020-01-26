@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/widget_margin"
@@ -6,19 +7,19 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/app_widget_symbol"
+        android:id="@+id/widget_symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_widget_text"
+        android:text="@string/widget_text"
         android:textColor="#dddddd"
         android:textSize="72sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/app_widget_date"
+        android:id="@+id/widget_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_widget_date"
+        android:text="@string/widget_date"
         android:textColor="#dddddd"
         android:textSize="14sp"
         android:textStyle="bold|italic" />
