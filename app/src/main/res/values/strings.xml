@@ -6,6 +6,8 @@
     <string name="dialog_add_hint_symbol">symbol</string>
     <string name="dialog_add_hint_note">description/note</string>
 
+    <string name="button_delete">delete entry</string>
+
 <!--    These are just place-holders. -->
     <string name="widget_text">\?</string>
     <string name="widget_date">00:00 00-00</string>

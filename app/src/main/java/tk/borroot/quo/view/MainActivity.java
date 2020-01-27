@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (Symbol symbol : symbols) {
             // Create the view for one entry.
-            View view = inflater.inflate(R.layout.main_entry, null);
+            View view = inflater.inflate(R.layout.main_entry, layout, false);
             TextView viewSymbol = view.findViewById(R.id.entry_symbol);
             TextView viewNote = view.findViewById(R.id.entry_note);
 
