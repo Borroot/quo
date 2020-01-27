@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/entry_margin_big"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+    android:orientation="horizontal"
+    android:padding="@dimen/entry_margin_small"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:background="@color/colorPrimaryLight"
+    tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/entry_symbol"
+            android:text="W"
+            android:textSize="48sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="@dimen/entry_margin_small">
+
+            <TextView
+                android:id="@+id/entry_note"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non volutpat."
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

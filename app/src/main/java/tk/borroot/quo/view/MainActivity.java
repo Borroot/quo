@@ -7,9 +7,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.List;
 
 import tk.borroot.quo.controller.Controller;
 import tk.borroot.quo.R;
@@ -22,6 +27,8 @@ import tk.borroot.quo.database.Symbol;
  * @author Bram Pulles
  */
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private Controller controller;
 
@@ -42,15 +49,44 @@ public class MainActivity extends AppCompatActivity {
             EditText view_symbol = view.findViewById(R.id.dialog_add_symbol);
             EditText view_note = view.findViewById(R.id.dialog_add_note);
 
+            // Take the symbol and the note from the fields with user input.
             String text = String.valueOf(view_symbol.getText());
             if (text.equals("")) return;
             char ch = text.charAt(0);
             String note = String.valueOf(view_note.getText());
             Symbol symbol = new Symbol(ch, note);
 
+            // Add the symbol to the database and draw it on the screen.
             controller.addSymbol(symbol);
+            onDraw();
         });
         alert.show();
+    }
+
+    /**
+     * Draw all of the entries from the database.
+     */
+    private void onDraw() {
+        List<Symbol> symbols = controller.getSymbols();
+
+        // Create the layout where all of the entries will be shown and clear it.
+        LinearLayout layout = findViewById(R.id.main_content);
+        LayoutInflater inflater = this.getLayoutInflater();
+        layout.removeAllViews();
+
+        for (Symbol symbol : symbols) {
+            // Create the view for one entry.
+            View view = inflater.inflate(R.layout.main_entry, null);
+            TextView viewSymbol = view.findViewById(R.id.entry_symbol);
+            TextView viewNote = view.findViewById(R.id.entry_note);
+
+            // Set the text in the view.
+            viewSymbol.setText(String.format("%s", symbol.getSymbol()));
+            viewNote.setText(symbol.getNote());
+
+            // Add the view to the main content view.
+            layout.addView(view);
+        }
     }
 
     @Override
@@ -59,13 +95,14 @@ public class MainActivity extends AppCompatActivity {
         controller = Controller.getController(this);
 
         // Set the layout of the view.
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         setSupportActionBar(findViewById(R.id.toolbar));
 
         // Set the onclick listener for the plus button.
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener((View v) -> onAdd());
 
-        // TODO draw the entries
+        // Draw all of the symbols with their notes.
+        onDraw();
     }
 }
