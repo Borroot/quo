@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -79,10 +81,17 @@ public class MainActivity extends AppCompatActivity {
             View view = inflater.inflate(R.layout.main_entry, layout, false);
             TextView viewSymbol = view.findViewById(R.id.entry_symbol);
             TextView viewNote = view.findViewById(R.id.entry_note);
+            ImageButton buttonDelete = view.findViewById(R.id.entry_button_delete);
 
             // Set the text in the view.
             viewSymbol.setText(String.format("%s", symbol.getSymbol()));
             viewNote.setText(symbol.getNote());
+
+            // Set the onclick for deleting an item.
+            buttonDelete.setOnClickListener((View v) -> {
+                controller.deleteSymbol(symbol);
+                onDraw();
+            });
 
             // Add the view to the main content view.
             layout.addView(view);

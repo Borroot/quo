@@ -3,6 +3,7 @@ package tk.borroot.quo.controller;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,6 +102,16 @@ public class Controller {
      */
     public void addSymbol(Symbol symbol) {
         repository.insert(symbol);
+    }
+
+    /**
+     * Delete a symbol from the repository.
+     *
+     * @param symbol to be deleted
+     */
+    public void deleteSymbol(Symbol symbol) {
+        Log.d(TAG, "delete " + symbol);
+        repository.delete(symbol);
     }
 
     /**
