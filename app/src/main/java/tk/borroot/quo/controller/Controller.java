@@ -21,8 +21,6 @@ import tk.borroot.quo.database.Symbol;
  */
 public class Controller {
 
-    private static final String TAG = Controller.class.getSimpleName();
-
     private static Repository repository;
     private static Controller INSTANCE;
 
@@ -110,7 +108,6 @@ public class Controller {
      * @param symbol to be deleted
      */
     public void deleteSymbol(Symbol symbol) {
-        Log.d(TAG, "delete " + symbol);
         repository.delete(symbol);
     }
 

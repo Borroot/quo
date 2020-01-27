@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:padding="@dimen/entry_margin_small"
+    android:layout_marginVertical="@dimen/entry_margin_small"
     android:background="@color/colorPrimaryLight"
-    android:layout_margin="@dimen/entry_margin_big"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

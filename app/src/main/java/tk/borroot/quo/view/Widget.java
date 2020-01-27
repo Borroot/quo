@@ -17,8 +17,6 @@ import tk.borroot.quo.R;
  */
 public class Widget extends AppWidgetProvider {
 
-    private static final String TAG = Controller.class.getSimpleName();
-
     private static final String ACTION_WIDGET = "tk.borroot.quo.action.APPWIDGET_CLICK";
 
     /**

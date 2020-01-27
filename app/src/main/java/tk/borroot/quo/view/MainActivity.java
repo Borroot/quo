@@ -28,8 +28,6 @@ import tk.borroot.quo.database.Symbol;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     private Controller controller;
 
     /**
