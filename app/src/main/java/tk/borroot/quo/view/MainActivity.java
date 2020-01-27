@@ -9,8 +9,6 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -18,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -61,11 +58,12 @@ public class MainActivity extends AppCompatActivity {
             String note = String.valueOf(view_note.getText());
             Symbol symbol = new Symbol(ch, note);
 
-            // Add the symbol to the database and draw it on the screen.
+            // Check if the symbol already exists yes or no.
             if (controller.getSymbols().contains(symbol)) {
-                Toast.makeText(MainActivity.this, R.string.symbol_already_exists,
-                        Toast.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.main_activity), "The symbol " + symbol.getSymbol()
+                        + " already exists.", Snackbar.LENGTH_SHORT).show();
             } else {
+                // Add the symbol to the database and draw it on the screen.
                 controller.addSymbol(symbol);
                 onDraw();
             }
