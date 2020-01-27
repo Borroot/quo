@@ -1,12 +1,16 @@
 package tk.borroot.quo.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
      * Add a new symbol. The symbol and the optional note are
      * retrieved by using an alert dialog.
      */
+    @SuppressLint("ShowToast")
     private void onAdd() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
@@ -56,8 +62,13 @@ public class MainActivity extends AppCompatActivity {
             Symbol symbol = new Symbol(ch, note);
 
             // Add the symbol to the database and draw it on the screen.
-            controller.addSymbol(symbol);
-            onDraw();
+            if (controller.getSymbols().contains(symbol)) {
+                Toast.makeText(MainActivity.this, R.string.symbol_already_exists,
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                controller.addSymbol(symbol);
+                onDraw();
+            }
         });
         alert.show();
     }
@@ -95,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
         // Add some space to the bottom so the last entry can be viewed easily.
         View space = new Space(this);
-        space.setMinimumHeight(150);
+        space.setMinimumHeight(180);
         layout.addView(space);
     }
 

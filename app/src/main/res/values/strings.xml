@@ -7,6 +7,7 @@
     <string name="dialog_add_hint_note">description/note</string>
 
     <string name="button_delete">delete entry</string>
+    <string name="symbol_already_exists">This symbol already exists.</string>
 
 <!--    These are just place-holders. -->
     <string name="widget_text">\?</string>
