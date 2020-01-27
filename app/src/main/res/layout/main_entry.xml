@@ -19,6 +19,7 @@
             android:id="@+id/entry_symbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/entry_margin_small"
             android:text="W"
             android:textColor="#ffffff"
             android:textSize="48sp"

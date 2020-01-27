@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import java.util.List;
@@ -92,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
             // Add the view to the main content view.
             layout.addView(view);
         }
+        // Add some space to the bottom so the last entry can be viewed easily.
+        View space = new Space(this);
+        space.setMinimumHeight(150);
+        layout.addView(space);
     }
 
     @Override
