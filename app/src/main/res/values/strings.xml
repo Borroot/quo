@@ -13,5 +13,5 @@
 <!--    This is everything which is saved in the shared prefs.-->
     <string name="shared_prefs">my_prefs</string>
     <string name="saved_symbols">symbols</string>
-    <string name="saved_symbol_index">symbol_index</string>
+    <string name="saved_symbol_current">symbol</string>
 </resources>

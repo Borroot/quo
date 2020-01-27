@@ -32,6 +32,14 @@ public class Symbol {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o instanceof Symbol) {
+            return ((Symbol)o).getSymbol() == symbol;
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return symbol + ". " + note;
     }

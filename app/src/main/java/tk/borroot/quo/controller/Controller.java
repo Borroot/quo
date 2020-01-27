@@ -49,8 +49,8 @@ public class Controller {
     }
 
     /**
-     * Look up the current index of the symbol shown by the widget,
-     * increase this value (or set to 0) and return the new symbol.
+     * Look up the current symbol shown by the widget,
+     * increase the index (or set to 0) and return the new symbol.
      * The symbol will always be exactly one character.
      *
      * @param context the current context
@@ -66,16 +66,22 @@ public class Controller {
         List<Symbol> symbols = getSymbols();
         if (symbols.size() == 0) return '?';
 
-        // Get the current index for the symbol from the shared pref.
-        int index = sharedPref.getInt(String.valueOf(R.string.saved_symbol_index), 0);
+        // Get the the current symbol from the shared pref. If '?' is returned
+        // then the index will be -1 which becomes 0 aka the first symbol in the list.
+        String tmp = sharedPref.getString(String.valueOf(R.string.saved_symbol_current), "?");
+        char current = tmp.charAt(0);
+
+        int index = symbols.indexOf(new Symbol(current, ""));
         index = (index >= symbols.size() - 1) ? 0 : index + 1;
 
-        // Update the index for the symbol.
-        editor.putInt(String.valueOf(R.string.saved_symbol_index), index);
+        // Set the next symbol.
+        char nextSymbol = symbols.get(index).getSymbol();
+
+        // Update the current symbol to the new one.
+        editor.putString(String.valueOf(R.string.saved_symbol_current), nextSymbol + "");
         editor.apply();
 
-        // Take the new symbol from the array.
-        return symbols.get(index).getSymbol();
+        return nextSymbol;
     }
 
     /**
